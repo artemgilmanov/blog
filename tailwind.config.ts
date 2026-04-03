@@ -16,6 +16,6 @@ const config: Config = {
     },
   },
   plugins: [typography],
-  darkMode: 'media',
+  darkMode: 'class',
 };
 export default config;

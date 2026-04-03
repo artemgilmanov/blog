@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+/* 
+ * TAILWIND V4 DARK MODE CONFIGURATION 
+ * By default, Tailwind v4 uses system media queries (`prefers-color-scheme`).
+ * This custom variant ensures the 'dark:' utility classes ONLY trigger when
+ * the '.dark' class is explicitly present on the document root, ensuring our 
+ * manual theme toggle accurately controls the design.
+ */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #ffffff;
   --foreground: #111111;
@@ -20,11 +29,9 @@
   --color-foreground: var(--foreground);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #050505;
-    --foreground: #eeeeee;
-  }
+.dark {
+  --background: #050505;
+  --foreground: #eeeeee;
 }
 
 body {
@@ -33,29 +40,104 @@ body {
   font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
 }
 
-/* Custom Typography adjustments for minimalism */
+/* Custom Typography adjustments for minimalism and premium feel */
 .prose {
   --tw-prose-body: var(--foreground);
   --tw-prose-headings: var(--foreground);
-  --tw-prose-links: #3b82f6; /* A subtle blue for links */
+  --tw-prose-links: #3b82f6;
   --tw-prose-bold: var(--foreground);
   --tw-prose-counters: var(--neutral-400);
-  --tw-prose-bullets: var(--neutral-400);
+  --tw-prose-bullets: var(--neutral-300);
   --tw-prose-quotes: var(--foreground);
   --tw-prose-quote-borders: var(--neutral-200);
   --tw-prose-captions: var(--neutral-500);
   --tw-prose-code: var(--foreground);
-  --tw-prose-pre-code: var(--neutral-200);
+  --tw-prose-pre-code: var(--neutral-300);
   --tw-prose-pre-bg: var(--neutral-900);
   --tw-prose-th-borders: var(--neutral-300);
   --tw-prose-td-borders: var(--neutral-200);
+  max-width: none;
+  font-size: 1rem;
+  line-height: 1.75;
 }
 
-@media (prefers-color-scheme: dark) {
-  .prose {
-    --tw-prose-links: #60a5fa;
-    --tw-prose-quote-borders: var(--neutral-800);
-    --tw-prose-th-borders: var(--neutral-700);
-    --tw-prose-td-borders: var(--neutral-800);
-  }
+.prose h2, .prose h3 {
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  margin-top: 2.5em;
 }
+
+.prose p {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  color: var(--neutral-600);
+}
+
+.prose ul > li::before {
+  background-color: var(--neutral-300);
+}
+
+.prose a {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s;
+}
+
+.prose a:hover {
+  border-bottom-color: currentColor;
+  opacity: 0.8;
+}
+
+.dark .prose p {
+  color: var(--neutral-400);
+}
+
+.dark .prose {
+  --tw-prose-links: #60a5fa;
+  --tw-prose-quote-borders: var(--neutral-800);
+  --tw-prose-th-borders: var(--neutral-700);
+  --tw-prose-td-borders: var(--neutral-800);
+  --tw-prose-bullets: var(--neutral-700);
+}
+
+.dark .prose ul > li::before {
+  background-color: var(--neutral-700);
+}
+
+/* ==========================================================================
+ * MERMAID WIREFRAME INJECTION SYSTEM
+ * ========================================================================== 
+ * These rules forcibly hijack Mermaid's inline SVG styling. Instead of relying 
+ * on Mermaid's complex internal theme engine, we aggressively apply absolute 
+ * white backgrounds and pitch-black outlines (`!important`) to all SVG elements.
+ * 
+ * HOW THE ARCHITECTURE IS WIRED:
+ * 1. This CSS strictly locks the SVG into a pure "light mode" wireframe aesthetic.
+ * 2. The `<Mermaid />` React component wraps the SVG in a `div` with `dark:invert`.
+ * 3. In light mode, the diagram renders perfectly black-on-white based on these rules.
+ * 4. In dark mode, Tailwind's `invert` flips everything seamlessly (black-on-white 
+ *    becomes white-on-black) without recalculating the actual SVGs.
+ * ========================================================================== */
+.mermaid-wireframe svg rect, .mermaid-wireframe svg .actor, .mermaid-wireframe svg .note { fill: #ffffff !important; stroke: #000000 !important; border-color: #000000 !important; }
+.mermaid-wireframe svg circle, .mermaid-wireframe svg polygon { fill: #ffffff !important; stroke: #000000 !important; }
+.mermaid-wireframe svg .label-container { fill: #ffffff !important; stroke: #000000 !important; }
+
+/* Force all text to black */
+.mermaid-wireframe svg text, .mermaid-wireframe svg .messageText, .mermaid-wireframe svg .noteText, 
+.mermaid-wireframe svg .labelText, .mermaid-wireframe svg .loopText, .mermaid-wireframe svg .actor text, 
+.mermaid-wireframe svg tspan { fill: #000000 !important; color: #000000 !important; stroke: none !important; font-family: inherit !important; }
+
+/* Force all lines and arrows to black */
+.mermaid-wireframe svg line, .mermaid-wireframe svg path, .mermaid-wireframe svg .messageLine0, .mermaid-wireframe svg .messageLine1 { stroke: #000000 !important; }
+.mermaid-wireframe svg marker path { fill: #000000 !important; stroke: #000000 !important; }
+
+/* Actor lifeline (the dashed line below actors) */
+.mermaid-wireframe svg .actor-line { stroke: #000000 !important; }
+
+/* Edge labels */
+.mermaid-wireframe svg .edgeLabel { background-color: #ffffff !important; color: #000000 !important; }
+.mermaid-wireframe svg .edgeLabel rect { fill: #ffffff !important; stroke: none !important; }
+.mermaid-wireframe svg .edgeLabel span { color: #000000 !important; background: transparent !important; }
+
+/* Specific circle overrides */
+.mermaid-wireframe svg .node circle { fill: #ffffff !important; stroke: #000000 !important; stroke-width: 2px; }

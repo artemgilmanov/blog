@@ -11,18 +11,11 @@ export default function BlogPage() {
 
   return (
     <div className="space-y-12">
-      <section className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight">Writing</h1>
-        <p className="text-neutral-500 dark:text-neutral-400">
-          Thoughts on software engineering, design, and personal growth.
-        </p>
-      </section>
-
       <div className="grid gap-12">
         {posts.length > 0 ? (
           posts.map((post) => (
-            <Link 
-              key={post.slug} 
+            <Link
+              key={post.slug}
               href={`/blog/${post.slug}`}
               className="group block space-y-2"
             >
