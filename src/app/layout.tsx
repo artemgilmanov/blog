@@ -3,6 +3,7 @@ import "./globals.css";
 import Link from 'next/link';
 
 import ThemeToggle from "../components/ThemeToggle";
+import DynamicLogo from "../components/DynamicLogo";
 
 export const metadata: Metadata = {
   title: "Artem Gilmanov | Personal Website & Blog",
@@ -51,8 +52,9 @@ export default function RootLayout({
         className={`antialiased bg-background text-foreground selection:bg-neutral-200 dark:selection:bg-neutral-800 flex flex-col min-h-screen max-w-6xl mx-auto px-6 py-12 md:px-8 transition-colors duration-300`}
       >
         <header className="mb-12 flex justify-between items-center">
-          <Link href="/" className="font-semibold text-lg tracking-tight hover:opacity-70 transition-opacity">
-            artёmgilmanov
+          <Link href="/" className="flex items-center gap-1 font-semibold text-lg tracking-tight hover:opacity-70 transition-opacity">
+            <DynamicLogo />
+            {/* <span>artёmgilmanov</span> */}
           </Link>
           <nav className="flex gap-4 items-center text-sm font-medium text-neutral-500 dark:text-neutral-400">
             <Link href="/about" className="hover:text-foreground transition-colors">about</Link>
