@@ -73,8 +73,45 @@ body {
   color: var(--neutral-600);
 }
 
-.prose ul > li::before {
-  background-color: var(--neutral-300);
+/*
+ * LISTS
+ * Tailwind v4 preflight resets `ul, ol { list-style: none }`, and the
+ * @tailwindcss/typography plugin is not registered (no `@plugin` directive),
+ * so `.prose` lists need their markers restored explicitly here. Handles
+ * ordered (decimal), unordered (disc), and nested lists.
+ */
+.prose ol {
+  list-style-type: decimal;
+  padding-left: 1.5em;
+  margin: 1.25em 0;
+}
+
+.prose ul {
+  list-style-type: disc;
+  padding-left: 1.5em;
+  margin: 1.25em 0;
+}
+
+.prose li {
+  margin: 0.5em 0;
+  padding-left: 0.375em;
+}
+
+.prose li::marker {
+  color: var(--neutral-400);
+}
+
+/* Nested lists: tighter spacing and distinct bullet shapes per depth. */
+.prose :is(ul, ol) :is(ul, ol) {
+  margin: 0.5em 0;
+}
+
+.prose ul ul {
+  list-style-type: circle;
+}
+
+.prose ul ul ul {
+  list-style-type: square;
 }
 
 .prose a {
@@ -100,8 +137,8 @@ body {
   --tw-prose-bullets: var(--neutral-700);
 }
 
-.dark .prose ul > li::before {
-  background-color: var(--neutral-700);
+.dark .prose li::marker {
+  color: var(--neutral-600);
 }
 
 /* ==========================================================================
