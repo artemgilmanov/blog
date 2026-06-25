@@ -158,7 +158,7 @@ code[data-theme*=' '] span {
 
 /* Code block chrome — provided by us for a consistent minimalist look. */
 .prose figure[data-rehype-pretty-code-figure] {
-  margin: 0;
+  margin: 2rem 0;
 }
 
 .prose [data-rehype-pretty-code-figure] pre {
@@ -213,9 +213,10 @@ code[data-theme*=' '] span {
   color: var(--neutral-400);
 }
 
-/* Optional code-block title (```ts title="file.ts"). */
+/* Optional code-block title (```ts title="file.ts"): renders as a file tab
+ * that connects seamlessly to the code block below it. */
 .prose [data-rehype-pretty-code-title] {
-  margin-bottom: -0.5rem;
+  margin: 0;
   padding: 0.5rem 1rem;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 0.75rem;
@@ -230,6 +231,19 @@ code[data-theme*=' '] span {
   color: var(--neutral-400);
   border-color: var(--neutral-800);
   background-color: var(--neutral-900);
+}
+
+/* When a title is present: flatten the code block's top so it joins the tab,
+ * drop its now-redundant top padding, and hide the duplicate language badge. */
+.prose figure[data-rehype-pretty-code-figure]:has([data-rehype-pretty-code-title]) pre {
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  padding-top: 1rem;
+}
+
+.prose figure[data-rehype-pretty-code-figure]:has([data-rehype-pretty-code-title]) .code-lang-label {
+  display: none;
 }
 
 /* ==========================================================================

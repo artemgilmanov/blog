@@ -26,9 +26,9 @@ export default function CodeBlock(props: CodeBlockProps) {
   }
 
   return (
-    <div className="group relative my-8">
+    <div className="group relative">
       {language && language !== 'plaintext' && (
-        <span className="absolute left-4 top-3 z-10 text-[10px] font-mono font-bold uppercase tracking-widest text-neutral-400 dark:text-neutral-600">
+        <span className="code-lang-label absolute left-4 top-3 z-10 text-[10px] font-mono font-bold uppercase tracking-widest text-neutral-400 dark:text-neutral-600">
           {language}
         </span>
       )}
