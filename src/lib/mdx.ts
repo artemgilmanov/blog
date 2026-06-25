@@ -54,7 +54,10 @@ const prettyCodeOptions: PrettyCodeOptions = {
   // We supply the code-block background ourselves in globals.css for a
   // consistent look with the rest of the minimalist UI.
   keepBackground: false,
-  defaultLang: { block: 'plaintext', inline: 'plaintext' },
+  // Only default a language for fenced blocks. Leaving `inline` unset keeps
+  // plain inline code (`like this`) as a normal <code> element instead of
+  // wrapping it in highlighter markup (which otherwise inherited block padding).
+  defaultLang: { block: 'plaintext' },
 }
 
 // Shared MDX pipeline. Everything here runs at build time (RSC / static export).

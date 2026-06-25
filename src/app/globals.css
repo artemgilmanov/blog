@@ -187,15 +187,32 @@ code[data-theme*=' '] span {
   counter-reset: line;
 }
 
-/* Per-line rows enable full-width line highlighting. */
-.prose [data-rehype-pretty-code-figure] [data-line] {
+/* Per-line rows enable full-width line highlighting. Scoped to `pre` so these
+ * block-only rules never leak onto inline code. */
+.prose [data-rehype-pretty-code-figure] pre [data-line] {
   padding: 0 1rem;
   border-left: 2px solid transparent;
 }
 
-.prose [data-rehype-pretty-code-figure] [data-highlighted-line] {
+.prose [data-rehype-pretty-code-figure] pre [data-highlighted-line] {
   background-color: rgba(59, 130, 246, 0.08);
   border-left-color: #3b82f6;
+}
+
+/* Inline code (`like this`). */
+.prose :not(pre) > code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.85em;
+  padding: 0.15em 0.4em;
+  border-radius: 0.3rem;
+  background-color: var(--neutral-100);
+  border: 1px solid var(--neutral-200);
+  color: var(--foreground);
+}
+
+.dark .prose :not(pre) > code {
+  background-color: var(--neutral-800);
+  border-color: var(--neutral-700);
 }
 
 /* Optional line numbers (```ts showLineNumbers). */
