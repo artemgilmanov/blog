@@ -105,6 +105,128 @@ body {
 }
 
 /* ==========================================================================
+ * SYNTAX HIGHLIGHTING (rehype-pretty-code + Shiki)
+ * ==========================================================================
+ * Highlighting is generated at build time. rehype-pretty-code emits dual-theme
+ * CSS variables (--shiki-light / --shiki-dark) on every token span; we pick
+ * which set applies based on the manual `.dark` class on <html>. */
+code[data-theme*=' '],
+code[data-theme*=' '] span {
+  color: var(--shiki-light);
+}
+.dark code[data-theme*=' '],
+.dark code[data-theme*=' '] span {
+  color: var(--shiki-dark);
+}
+
+/* Code block chrome — provided by us for a consistent minimalist look. */
+.prose figure[data-rehype-pretty-code-figure] {
+  margin: 0;
+}
+
+.prose [data-rehype-pretty-code-figure] pre {
+  overflow-x: auto;
+  border-radius: 0.75rem;
+  border: 1px solid var(--neutral-200);
+  background-color: var(--neutral-50);
+  padding: 2.25rem 0 1rem;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.dark .prose [data-rehype-pretty-code-figure] pre {
+  border-color: var(--neutral-800);
+  background-color: var(--neutral-900);
+}
+
+.prose [data-rehype-pretty-code-figure] pre code {
+  display: grid;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: inherit;
+  counter-reset: line;
+}
+
+/* Per-line rows enable full-width line highlighting. */
+.prose [data-rehype-pretty-code-figure] [data-line] {
+  padding: 0 1rem;
+  border-left: 2px solid transparent;
+}
+
+.prose [data-rehype-pretty-code-figure] [data-highlighted-line] {
+  background-color: rgba(59, 130, 246, 0.08);
+  border-left-color: #3b82f6;
+}
+
+/* Optional line numbers (```ts showLineNumbers). */
+.prose [data-rehype-pretty-code-figure] code[data-line-numbers] {
+  counter-reset: line;
+}
+
+.prose [data-rehype-pretty-code-figure] code[data-line-numbers] > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1rem;
+  margin-right: 1.5rem;
+  text-align: right;
+  color: var(--neutral-400);
+}
+
+/* Optional code-block title (```ts title="file.ts"). */
+.prose [data-rehype-pretty-code-title] {
+  margin-bottom: -0.5rem;
+  padding: 0.5rem 1rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  color: var(--neutral-500);
+  border: 1px solid var(--neutral-200);
+  border-bottom: none;
+  border-radius: 0.75rem 0.75rem 0 0;
+  background-color: var(--neutral-50);
+}
+
+.dark .prose [data-rehype-pretty-code-title] {
+  color: var(--neutral-400);
+  border-color: var(--neutral-800);
+  background-color: var(--neutral-900);
+}
+
+/* ==========================================================================
+ * HEADING ANCHORS (rehype-autolink-headings)
+ * ========================================================================== */
+.prose :is(h2, h3, h4) .heading-anchor {
+  margin-left: 0.4rem;
+  opacity: 0;
+  color: var(--neutral-400);
+  text-decoration: none;
+  border: none;
+  transition: opacity 0.2s;
+}
+
+.prose :is(h2, h3, h4):hover .heading-anchor,
+.prose .heading-anchor:focus {
+  opacity: 1;
+}
+
+.prose .heading-anchor:hover {
+  color: var(--foreground);
+  border: none;
+}
+
+/* ==========================================================================
+ * KATEX (math)
+ * ========================================================================== */
+.prose .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.5rem 0;
+}
+
+/* ==========================================================================
  * MERMAID WIREFRAME INJECTION SYSTEM
  * ========================================================================== 
  * These rules forcibly hijack Mermaid's inline SVG styling. Instead of relying 

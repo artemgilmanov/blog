@@ -3,14 +3,56 @@ import { getAllPosts } from '../lib/posts';
 
 export default function HomePage() {
   const posts = getAllPosts()
+  const recentPosts = posts.slice(0, 4)
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-16">
+      {/* Intro / hero */}
+      <section className="space-y-6 max-w-2xl">
+        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground leading-tight">
+          Hi, I&apos;m Artём Gilmanov.
+        </h1>
+        <p className="text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed font-light">
+          I&apos;m a software engineer based in Cologne, Germany, working at the
+          intersection of AI and production systems. This is where I write
+          essays, technical deep dives, and tutorials — breaking down complex
+          concepts into practical, honest insights.
+        </p>
+        <div className="flex gap-4 text-sm font-medium">
+          <Link
+            href="/blog"
+            className="hover:text-foreground text-neutral-500 dark:text-neutral-400 transition-colors underline underline-offset-4"
+          >
+            Read the blog →
+          </Link>
+          <Link
+            href="/about"
+            className="hover:text-foreground text-neutral-500 dark:text-neutral-400 transition-colors underline underline-offset-4"
+          >
+            About me
+          </Link>
+        </div>
+      </section>
+
+      {/* Recent posts */}
       <section className="space-y-8">
+        <div className="flex items-baseline justify-between">
+          <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-neutral-400">
+            Recent posts
+          </h2>
+          {posts.length > recentPosts.length && (
+            <Link
+              href="/blog"
+              className="text-xs font-mono uppercase tracking-widest text-neutral-400 hover:text-foreground transition-colors"
+            >
+              View all →
+            </Link>
+          )}
+        </div>
 
         <div className="grid gap-8">
-          {posts.length > 0 ? (
-            posts.map((post) => (
+          {recentPosts.length > 0 ? (
+            recentPosts.map((post) => (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}

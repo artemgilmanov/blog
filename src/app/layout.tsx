@@ -4,14 +4,23 @@ import Link from 'next/link';
 
 import ThemeToggle from "../components/ThemeToggle";
 import DynamicLogo from "../components/DynamicLogo";
+import { siteConfig } from "../lib/site";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: "Artem Gilmanov | Personal Website & Blog",
   description: "Developer, writer, and minimalist. Blog about tech, career and more.",
+  alternates: {
+    types: {
+      'application/rss+xml': [
+        { url: '/rss.xml', title: `${siteConfig.name} — RSS Feed` },
+      ],
+    },
+  },
   openGraph: {
     title: 'Artem Gilmanov',
     description: 'Minimalist personal site and blog',
-    url: 'https://artemgilmanov.github.io', // Placeholder
+    url: siteConfig.url,
     siteName: 'Artem Gilmanov',
     locale: 'en_US',
     type: 'website',
