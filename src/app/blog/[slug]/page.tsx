@@ -43,13 +43,13 @@ export async function generateMetadata({ params }: PostPageProps) {
 
 const components = {
   h2: (props: ComponentPropsWithoutRef<'h2'>) => (
-    <h2 {...props} className="group text-xl font-bold tracking-tight text-foreground mt-12 mb-4 scroll-mt-24" />
+    <h2 {...props} className="group text-2xl font-bold tracking-tight text-foreground mt-14 mb-4 scroll-mt-24" />
   ),
   h3: (props: ComponentPropsWithoutRef<'h3'>) => (
     <h3 {...props} className="group text-lg font-semibold tracking-tight text-foreground mt-10 mb-3 scroll-mt-24" />
   ),
   h4: (props: ComponentPropsWithoutRef<'h4'>) => (
-    <h4 {...props} className="group text-base font-semibold tracking-tight text-foreground mt-8 mb-2 scroll-mt-24" />
+    <h4 {...props} className="group text-sm font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mt-8 mb-2 scroll-mt-24" />
   ),
   p: (props: ComponentPropsWithoutRef<'p'>) => (
     <p {...props} className="text-neutral-600 dark:text-neutral-400 leading-relaxed my-6" />
