@@ -1,12 +1,6 @@
 export default function AboutPage() {
   return (
     <div className="space-y-12">
-      <section className="space-y-6">
-        <p className="text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed font-light">
-          Artёm Gilmanov
-        </p>
-      </section>
-
       <section className="prose prose-neutral dark:prose-invert max-w-none">
         <p>
           Hello, my name is Artёm Gilmanov. I am a Software Engineer based in Cologne, Germany. Currently I am working at KMS Vertrieb and Services GmbH (part of CompuGroup Medical), where I am responsible for AI integration and adoption — using LLMs for agents and utilising SMLs in production.

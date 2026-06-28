@@ -10,10 +10,10 @@ export default function HomePage() {
       {/* Intro / hero */}
       <section className="space-y-6 max-w-2xl">
         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground leading-tight">
-          Hi, I&apos;m Artём Gilmanov.
+          Hi, I&apos;m Artём Gilmanov
         </h1>
         <p className="text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed font-light">
-          I&apos;m a software engineer based in Cologne, Germany, working at the
+          a software engineer based in Cologne, Germany, working at the
           intersection of AI and production systems. This is where I write
           essays, technical deep dives, and tutorials — breaking down complex
           concepts into practical, honest insights.
