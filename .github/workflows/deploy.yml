@@ -59,13 +59,11 @@ jobs:
           node-version: "20"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
       - name: Setup Pages
+        # NOTE: do not set `static_site_generator: next` here. That option injects
+        # a next.config.js which conflicts with our next.config.mjs and causes the
+        # build to run without `output: 'export'`, so no `out/` is produced. We
+        # configure export + (no) basePath ourselves in next.config.mjs.
         uses: actions/configure-pages@v4
-        with:
-          # Automatically inject basePath in your Next.js config file and disable
-          # server side image optimization (further optimization can be done manually).
-          # If you use "output: export", Next.js will ignore this base path.
-          # We'll handle it via next.config.mjs if needed.
-          static_site_generator: next
       - name: Restore cache
         uses: actions/cache@v4
         with:
