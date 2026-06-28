@@ -7,32 +7,21 @@ export default function AboutPage() {
         </p>
       </section>
 
-      {/*
-        TODO(Artem): The biography below contains conflicting employer/timeline
-        claims that need your confirmation — please resolve before publishing:
-          1. "currently working as an AI Software Engineer at CGM"
-          2. "Before joining Google DeepMind in 2025..."
-          3. "...I was a Technical Lead at Hugging Face"
-        These three cannot all be the current/most-recent role. Which is your
-        current employer, and what is the correct order/timeline of the others?
-        (Typos have been fixed; factual claims were left untouched pending your
-        confirmation so nothing is invented.)
-      */}
       <section className="prose prose-neutral dark:prose-invert max-w-none">
         <p>
-          Hello, my name is Artёm Gilmanov. I am a Software Engineer based in Cologne, Germany. Currently I am working as an AI Software Engineer at CGM, where I am responsible for AI adoption — using LLMs for agents and utilising small language models in production.
+          Hello, my name is Artёm Gilmanov. I am a Software Engineer based in Cologne, Germany. Currently I am working at KMS Vertrieb and Services GmbH (part of CompuGroup Medical), where I am responsible for AI integration and adoption — using LLMs for agents and utilising SMLs in production.
         </p>
         <p>
-          My mission is to help every developer to build with AI responsibly, ethically, and successfully, leveraging everything from open models to foundation models like Gemini and Gemma, across cloud and on-device platforms.
+          My mission is to build with AI responsibly, ethically, and successfully, leveraging everything from open to foundation models, across cloud and on-premise solutions.
         </p>
         <p>
-          Before joining Google DeepMind in 2025, I was a Technical Lead at Hugging Face, leading strategic collaborations and partnerships with major cloud providers (AWS, Google Cloud, Azure, Cloudflare, DigitalOcean, Dell).
+          Before joining KMS in 2026, I was working in Cross-Solution Team at Mesalvo GmbH, developing frameworks and libraries for internal developers, contributing to FHIR/HL7-aligned microservice standard.
         </p>
         <p>
-          My passion for software engineering began over 10 years ago. I&apos;ve designed and implemented multiple cloud-native AI architectures for various industries and was recognized as the first German AWS Machine Learning Hero in 2021. I actively share my knowledge through research, blog posts, and on LinkedIn and X (formerly Twitter).
+          My passion for software engineering began over 5 years ago. Back to the days when I was working on Architectural Design automatization, from generation of master plans, apartments distribution to environmental analysis. I&apos;ve designed and implemented multiple algorithms for evidence based design desicions.
         </p>
         <p>
-          On my blog, I share my learnings, break down complex concepts, share practical approaches, and provide insights.
+          On my blog, I share my learnings, break down complex concepts, share practical implementations, and provide insights.
         </p>
       </section>
     </div>
