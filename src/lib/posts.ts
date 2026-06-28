@@ -25,11 +25,16 @@ export interface Post {
   headings: TocItem[]
 }
 
+// Fenced code blocks are line-anchored (``` at the start of a line). Matching
+// that way matters: an inline code span can legitimately contain ``` characters,
+// and a non-anchored regex would mis-pair fences and swallow real content.
+const FENCED_CODE = /^[ \t]*```[\s\S]*?^[ \t]*```[^\n]*$/gm
+
 // Strip fenced code blocks and inline code so we don't pick up `#` comments
 // or words inside code samples when counting words / extracting headings.
 function stripCode(markdown: string): string {
   return markdown
-    .replace(/```[\s\S]*?```/g, '')
+    .replace(FENCED_CODE, '')
     .replace(/`[^`]*`/g, '')
 }
 
@@ -46,7 +51,7 @@ function countWords(markdown: string): number {
 // github-slugger so they match the ids that rehype-slug generates at build time.
 function extractHeadings(markdown: string): TocItem[] {
   const slugger = new GithubSlugger()
-  const withoutCode = markdown.replace(/```[\s\S]*?```/g, '')
+  const withoutCode = markdown.replace(FENCED_CODE, '')
   const headings: TocItem[] = []
   const headingRegex = /^(#{2,4})\s+(.+?)\s*#*\s*$/gm
   let match: RegExpExecArray | null

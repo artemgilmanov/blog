@@ -95,6 +95,13 @@ body {
 .prose li {
   margin: 0.5em 0;
   padding-left: 0.375em;
+  /* Match paragraph color so bare <li> text doesn't read brighter than
+   * top-level items whose text Markdown wraps in a (muted) <p>. */
+  color: var(--neutral-600);
+}
+
+.dark .prose li {
+  color: var(--neutral-400);
 }
 
 .prose li::marker {
@@ -200,6 +207,12 @@ code[data-theme*=' '] span {
 /* Code block chrome — provided by us for a consistent minimalist look. */
 .prose figure[data-rehype-pretty-code-figure] {
   margin: 2rem 0;
+  /* Positioning context for the copy button (CodeBlock.tsx). Anchoring to the
+   * figure — rather than the inner <pre> wrapper — lets the button sit on the
+   * filename title bar when a title is present, instead of on the first line of
+   * code. With no title, the figure top equals the <pre> top, so the button
+   * still lands in the top-right corner of the code as before. */
+  position: relative;
 }
 
 .prose [data-rehype-pretty-code-figure] pre {
@@ -327,6 +340,19 @@ code[data-theme*=' '] span {
 }
 
 /* ==========================================================================
+ * TABLE OF CONTENTS (collapsible h2 groups)
+ * ========================================================================== */
+.toc-summary {
+  list-style: none;
+}
+.toc-summary::-webkit-details-marker {
+  display: none;
+}
+.toc-group[open] > .toc-summary .toc-chevron {
+  transform: rotate(90deg);
+}
+
+/* ==========================================================================
  * KATEX (math)
  * ========================================================================== */
 .prose .katex-display {
@@ -372,3 +398,14 @@ code[data-theme*=' '] span {
 
 /* Specific circle overrides */
 .mermaid-wireframe svg .node circle { fill: #ffffff !important; stroke: #000000 !important; stroke-width: 2px; }
+
+/*
+ * In dark mode the wrapper is rendered through `dark:invert`, which also inverts
+ * the text-selection highlight — turning the yellow selection blue. Pre-invert
+ * the selection colors here so the filter flips them back to the yellow used
+ * everywhere else on the page.
+ */
+.dark .mermaid-wireframe ::selection {
+  background-color: #0533ea; /* invert(#facc15 / yellow-400) */
+  color: #e8e8e8;            /* invert(#171717 / neutral-900) */
+}

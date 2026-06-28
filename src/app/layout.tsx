@@ -58,7 +58,7 @@ export default function RootLayout({
         ` }} />
       </head>
       <body
-        className={`antialiased bg-background text-foreground selection:bg-neutral-200 dark:selection:bg-neutral-800 flex flex-col min-h-screen max-w-6xl mx-auto px-6 py-12 md:px-8 transition-colors duration-300`}
+        className={`antialiased bg-background text-foreground selection:bg-yellow-300 selection:text-neutral-900 dark:selection:bg-yellow-400 dark:selection:text-neutral-900 flex flex-col min-h-screen max-w-6xl mx-auto px-6 py-12 md:px-8 transition-colors duration-300`}
       >
         <header className="mb-12 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-1 font-semibold text-lg tracking-tight hover:opacity-70 transition-opacity">

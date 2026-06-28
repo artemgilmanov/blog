@@ -26,7 +26,11 @@ export default function CodeBlock(props: CodeBlockProps) {
   }
 
   return (
-    <div className="group relative">
+    // No `relative` here: the figure emitted by rehype-pretty-code is the
+    // positioning context (see globals.css), so the copy button can sit on the
+    // title bar when a filename title is present, instead of on the first code
+    // line. `group` is only needed for the hover state.
+    <div className="group">
       {language && language !== 'plaintext' && (
         <span className="code-lang-label absolute left-4 top-3 z-10 text-[10px] font-mono font-bold uppercase tracking-widest text-neutral-400 dark:text-neutral-600">
           {language}

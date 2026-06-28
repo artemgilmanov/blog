@@ -28,7 +28,7 @@ export default function DynamicLogo() {
     <span
       // We start with opacity-0 so there is no ugly "snap" when the font switches.
       // It elegantly appears half a second after evaluating the random math.
-      className={`inline-flex items-center justify-center text-4xl font-bold transition-opacity duration-300 ${font ? 'opacity-100' : 'opacity-0'}`}
+      className={`inline-flex items-center justify-center text-4xl font-bold italic transition-opacity duration-300 ${font ? 'opacity-100' : 'opacity-0'}`}
       style={{ fontFamily: font || 'inherit' }}
       aria-hidden="true"
     >
