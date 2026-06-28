@@ -114,6 +114,47 @@ body {
   list-style-type: square;
 }
 
+/*
+ * TABLES (GitHub-Flavored Markdown via remark-gfm)
+ * The typography plugin isn't loaded, so style tables explicitly. `display:
+ * block` + overflow lets wide tables scroll on small screens.
+ */
+.prose table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-size: 0.875rem;
+}
+
+.prose thead {
+  border-bottom: 2px solid var(--neutral-200);
+}
+
+.prose th {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.prose td {
+  padding: 0.5rem 0.75rem;
+  border-top: 1px solid var(--neutral-100);
+  color: var(--neutral-600);
+  vertical-align: top;
+}
+
+.dark .prose thead {
+  border-color: var(--neutral-800);
+}
+
+.dark .prose td {
+  border-color: var(--neutral-900);
+  color: var(--neutral-400);
+}
+
 .prose a {
   text-decoration: none;
   border-bottom: 1px solid transparent;

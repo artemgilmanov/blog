@@ -3,6 +3,7 @@ import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeKatex from 'rehype-katex'
 import remarkMath from 'remark-math'
+import remarkGfm from 'remark-gfm'
 import { visit } from 'unist-util-visit'
 import type { Element, ElementContent, Root } from 'hast'
 import type { PluggableList } from 'unified'
@@ -65,7 +66,7 @@ export const mdxOptions: {
   remarkPlugins: PluggableList
   rehypePlugins: PluggableList
 } = {
-  remarkPlugins: [remarkMath],
+  remarkPlugins: [remarkGfm, remarkMath],
   rehypePlugins: [
     rehypeMermaid,
     rehypeSlug,
